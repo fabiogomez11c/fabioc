@@ -28,6 +28,8 @@ void vecAdd(float* A_h, float* B_h, float* C_h, int n){
 
     // part 2: call kernel - to launch a grid of kernels
     // to perform the actual vector addition
+    // <<<number of blocks in the grid, number of threads in each block>>>
+    vecAddKernel<<<ceil(n/256.0), 256>>>(A_d, B_d, C_d, n);
     
     // part 3: copy c from the device memory
     // free device vectors
@@ -40,5 +42,11 @@ void vecAdd(float* A_h, float* B_h, float* C_h, int n){
 
 int main()
 {
+    float A[5] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    float B[5] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    float C[5];
+
+    vecAdd(A, B, C, 5);
+
     return 0;
 }
