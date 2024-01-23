@@ -33,7 +33,7 @@ void vecAdd(float* A_h, float* B_h, float* C_h, int n){
     
     // part 3: copy c from the device memory
     // free device vectors
-    cudaMemcpy(C_d, C_h, size, cudaMemcpyDeviceToHost);
+    cudaMemcpy(C_h, C_d, size, cudaMemcpyDeviceToHost);
 
     cudaFree(A_d);
     cudaFree(B_d);
