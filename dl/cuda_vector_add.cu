@@ -2,6 +2,17 @@
 #include <stdio.h>
 #include <cuda_runtime.h>
 
+// compute vector sum c = a + b
+// each thread performs one pair-wise addition
+// calling this kernel launches a new grid of threads
+__global__
+void vecAddKernel(float* A, float* B, float* C, int n){
+    int i = threadIdx.x + blockDim.x * blockIdx.x;
+    if (i < n){
+        C[i] = A[i] + B[i];
+    }
+}
+
 void vecAdd(float* A_h, float* B_h, float* C_h, int n){
     int size = n * sizeof(float); // size of a float data type * the length of the array
     float *A_d, *B_d, *C_d;
