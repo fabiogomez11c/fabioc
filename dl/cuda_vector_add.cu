@@ -7,7 +7,7 @@
 // calling this kernel launches a new grid of threads
 __global__
 void vecAddKernel(float* A, float* B, float* C, int n){
-    int i = threadIdx.x + blockDim.x * blockIdx.x;
+    int i = threadIdx.x + blockDim.x * blockIdx.x; // very important to understand blockDim vs blockIdx
     if (i < n){
         C[i] = A[i] + B[i];
     }
@@ -28,7 +28,7 @@ void vecAdd(float* A_h, float* B_h, float* C_h, int n){
 
     // part 2: call kernel - to launch a grid of kernels
     // to perform the actual vector addition
-    // <<<number of blocks in the grid, number of threads in each block>>>
+    // <<<dimGrid, dimBlock>>>
     vecAddKernel<<<ceil(n/256.0), 256>>>(A_d, B_d, C_d, n);
     
     // part 3: copy c from the device memory
