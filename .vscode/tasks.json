@@ -3,13 +3,16 @@
 	"tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: nvcc build active file",
-            "command": "/usr/local/cuda-11.7/bin/nvcc",
+            "label": "C/C++: gcc build active file",
+            "command": "/usr/bin/gcc",
             "args": [
+                "-std=c17",
+                "-Wall",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -18,7 +21,7 @@
                 "$gcc"
             ],
             "group": "build",
-            "detail": "compiler: /usr/local/cuda-11.7/bin/nvcc"
+            "detail": "compiler: /usr/bin/gcc"
         }
     ]
 }

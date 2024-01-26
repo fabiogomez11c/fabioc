@@ -1,3 +1,6 @@
 {
-    "files.associations": {"*.cu": "cpp"},
+    "files.associations": {
+        "*.cu": "cpp",
+        "stb_image.h": "c"
+    },
 }
