@@ -23,7 +23,6 @@ void colorToGrayscaleConvertion(
 
         Pout[grayOffset] = 0.21f*r + 0.71f*b + 0.07f*b; // operations with float are faster than double
     }
-
 }
 
 int main()
